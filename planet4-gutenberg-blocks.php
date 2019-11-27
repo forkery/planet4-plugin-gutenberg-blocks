@@ -164,30 +164,30 @@ function set_allowed_block_types( $allowed_block_types, $post ) {
 		'core/paragraph',
 		'core/heading',
 		'core/image',
-		// 'core/gallery', // functionality replaced by P4 galleries.
+		'core/gallery',
 		'core/list',
-		'core/quote', // TODO: Styling or removal.
-		// 'core/audio', // removed, not needed.
-		// 'core/cover', // removed, not needed.
+		'core/quote',
+		'core/audio',
+		'core/cover',
 		'core/file',
-		// 'core/video', // TODO: Decision. Ideally only allow embedded video.
-		// 'core/preformatted', // removed, not needed.
-		// 'core/code', // functionality not needed and not styled.
+		'core/video',
+		'core/preformatted',
+		'core/code',
 		'core/html',
-		'core/table', // TODO: Styling.
-		// 'core/pullquote', // removed, normal quote element is available.
-		// 'core/verse', // removed, not needed, not styled.
-		'core/buttons', // TODO: Styling.
-		// 'core/media-text' // removed, not needed.
-		// 'core/more', // removed, not needed.
-		// 'core/nextpage', // removed, not needed.
-		'core/separator', // TODO: Styling.
+		'core/table',
+		'core/pullquote',
+		'core/verse',
+		'core/buttons',
+		'core/media-text',
+		'core/more',
+		'core/nextpage',
+		'core/separator',
 		'core/spacer',
 		'core/shortcode',
-		// 'core/archives', // removed, not needed.
-		// 'core/categories', // removed, not needed.
-		// 'core/latest-comments', // removed, not needed.
-		// 'core/latest-posts', // removed, functionality replaced by P4 article list.
+		'core/archives',
+		'core/categories',
+		'core/latest-comments',
+		'core/latest-posts',
 		'core/embed',
 		'core-embed/twitter',
 		'core-embed/youtube',
@@ -198,12 +198,12 @@ function set_allowed_block_types( $allowed_block_types, $post ) {
 		'core-embed/spotify',
 		'core-embed/flickr',
 		'core-embed/vimeo',
-		// 'core-embed/animoto', // removed, not needed.
-		// 'core-embed/cloudup', // removed, not needed.
-		// 'core-embed/collegehumor', // removed, not needed.
+		'core-embed/animoto',
+		'core-embed/cloudup',
+		'core-embed/collegehumor',
 		'core-embed/dailymotion',
 		'core-embed/funnyordie',
-		// 'core-embed/hulu', // removed, not needed.
+		'core-embed/hulu',
 		'core-embed/imgur',
 		'core-embed/issuu',
 		'core-embed/kickstarter',
@@ -212,16 +212,16 @@ function set_allowed_block_types( $allowed_block_types, $post ) {
 		'core-embed/photobucket',
 		'core-embed/polldaddy',
 		'core-embed/reddit',
-		// 'core-embed/reverbnation', // removed, not needed.
-		// 'core-embed/screencast', // removed, not needed.
+		'core-embed/reverbnation',
+		'core-embed/screencast',
 		'core-embed/scribd',
 		'core-embed/slideshare',
-		// 'core-embed/smugmug', // removed, not needed.
+		'core-embed/smugmug',
 		'core-embed/speaker',
 		'core-embed/ted',
-		// 'core-embed/tumblr', // removed, not needed.
+		'core-embed/tumblr',
 		'core-embed/videopress',
-		// 'core-embed/wordpress-tv', // removed, not needed.
+		'core-embed/wordpress-tv',
 	];
 	// phpcs:enable
 
