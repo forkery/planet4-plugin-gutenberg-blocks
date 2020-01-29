@@ -188,6 +188,7 @@ function set_allowed_block_types( $allowed_block_types, $post ) {
 		'core/categories',
 		'core/latest-comments',
 		'core/latest-posts',
+		'core/columns',
 		'core/embed',
 		'core-embed/twitter',
 		'core-embed/youtube',
