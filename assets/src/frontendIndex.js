@@ -3,6 +3,7 @@ import { CounterFrontend } from './blocks/Counter/CounterFrontend';
 import { ArticlesFrontend } from './blocks/Articles/ArticlesFrontend';
 import { CookiesFrontend } from './blocks/Cookies/CookiesFrontend';
 import { SplittwocolumnsFrontend } from "./blocks/Splittwocolumns/SplittwocolumnsFrontend";
+import { wysiwygCssVars } from './wysiwygCssVars';
 
 const COMPONENTS = {
   'planet4-blocks/spreadsheet': SpreadsheetFrontend,
@@ -11,6 +12,7 @@ const COMPONENTS = {
   'planet4-blocks/cookies': CookiesFrontend,
   'planet4-blocks/split-two-columns': SplittwocolumnsFrontend
 };
+wysiwygCssVars();
 
 document.querySelectorAll( `[data-render]` ).forEach(
   blockNode => {
