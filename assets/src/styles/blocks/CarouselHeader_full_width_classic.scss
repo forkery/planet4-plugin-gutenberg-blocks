@@ -335,13 +335,14 @@ $medium-image-height: 600px;
 
       .carousel-captions-wrapper {
         @include medium-and-up {
+          margin-left: (-$text-slide-offset / 2);
+          margin-right: (-$text-slide-offset / 2);
           width: #{460 + ($text-slide-offset * 2)};
         }
-        @include large-and-up {
-          width: #{320 + ($text-slide-offset * 2)};
-        }
         @include x-large-and-up {
-          width: #{480 + ($text-slide-offset * 2)};
+          margin-left: 0;
+          margin-right: 0;
+          width: #{560 + ($text-slide-offset * 2)};
         }
         overflow: hidden;
         margin-left: -$text-slide-offset;
@@ -383,7 +384,7 @@ $medium-image-height: 600px;
         @include large-and-up {
           padding-left: $n30;
           padding-right: 0;
-          padding-top: 180px;
+          padding-top: 160px;
           padding-bottom: 32px;
 
           html[dir="rtl"] & {
@@ -395,7 +396,7 @@ $medium-image-height: 600px;
         @include x-large-and-up {
           padding-left: 0;
           padding-right: 0;
-          padding-top: 180px;
+          padding-top: 160px;
           padding-bottom: 54px;
         }
 
@@ -447,6 +448,7 @@ $medium-image-height: 600px;
 
           @include large-and-up {
             color: $white;
+            margin-top: 36px;
             max-width: 100%;
             width: 100%;
           }
@@ -470,6 +472,7 @@ $medium-image-height: 600px;
 
           @include large-and-up {
             color: $white;
+            margin-top: 48px;
             max-width: 100%;
             width: 100%;
           }
@@ -546,7 +549,8 @@ $medium-image-height: 600px;
             position: inherit;
             bottom: 60px;
             margin-top: 0;
-            margin-left: 0;
+            margin-left: ($text-slide-offset / 2);
+            margin-right: ($text-slide-offset / 2);
             width: auto;
 
             html[dir="rtl"] & {
@@ -554,6 +558,11 @@ $medium-image-height: 600px;
               margin-left: auto;
               margin-right: 0;
             }
+          }
+
+          @include x-large-and-up {
+            margin-left: $text-slide-offset;
+            margin-right: $text-slide-offset;
           }
 
           .btn {
