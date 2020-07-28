@@ -152,7 +152,8 @@
   }
 }
 
-.split-two-column-item-link {
+.split-two-column-item-link,
+.block-editor a:not([href]).split-two-column-item-link {
   text-decoration: none;
   color: $yellow;
 
@@ -241,12 +242,14 @@
 }
 
 .split-two-column-item-button {
+  white-space: nowrap;
+
   @include large-and-up {
-    width: 70%;
+    width: 80%;
   }
 
   @include x-large-and-up {
-    width: 60%;
+    width: 70%;
   }
 }
 

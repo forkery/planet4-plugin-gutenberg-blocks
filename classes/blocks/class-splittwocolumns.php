@@ -21,40 +21,7 @@ class SplitTwoColumns extends Base_Block {
 	 *
 	 * @const string BLOCK_NAME.
 	 */
-	const BLOCK_NAME = 'split_two_columns';
-
-	/**
-	 * Register shortcake shortcode.
-	 *
-	 * @param array  $attributes Shortcode attributes.
-	 * @param string $content   Content.
-	 *
-	 * @return mixed
-	 */
-	public function add_block_shortcode( $attributes, $content ) {
-
-		$attributes = shortcode_atts(
-			[
-				'select_issue'      => '',
-				'title'             => '',
-				'issue_description' => '',
-				'issue_link_text'   => '',
-				'issue_link_path'   => '',
-				'issue_image'       => '',
-				'focus_issue_image' => '',
-				'select_tag'        => '',
-				'tag_description'   => '',
-				'button_text'       => '',
-				'button_link'       => '',
-				'tag_image'         => '',
-				'focus_tag_image'   => '',
-			],
-			$attributes,
-			'shortcake_split_two_columns'
-		);
-
-		return $this->render( $attributes );
-	}
+	public const BLOCK_NAME = 'split_two_columns';
 
 
 	/**
@@ -67,7 +34,6 @@ class SplitTwoColumns extends Base_Block {
 			'planet4-blocks/split-two-columns',
 			[
 				'editor_script'   => 'planet4-blocks',
-				'render_callback' => [ $this, 'render' ],
 				'attributes'      => [
 					'select_issue'      => [
 						'type' => 'integer',
@@ -121,6 +87,8 @@ class SplitTwoColumns extends Base_Block {
 	 * @return array The data to be passed in the View.
 	 */
 	public function prepare_data( $fields ): array {
+		return [];
+
 		$issue_id        = absint( $fields['select_issue'] ?? '' );
 		$issue_meta_data = get_post_meta( $issue_id );
 
