@@ -113,7 +113,15 @@ export class VariableControl extends Component {
       onChange,
     } = this.props;
 
-    return <li key={ cssVar.name } style={ { userSelect: 'none', position: 'relative', listStyleType: 'none' } }>
+    return <li
+      key={ cssVar.name }
+      style={ {
+        userSelect: 'none',
+        position: 'relative',
+        listStyleType: 'none',
+        fontSize: '15px',
+      } }
+    >
       <IconButton
         icon={ 'minus' }
         style={ { float: 'right', height: '29px' } }
