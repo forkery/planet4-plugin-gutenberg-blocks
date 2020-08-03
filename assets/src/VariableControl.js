@@ -101,7 +101,7 @@ export class VariableControl extends Component {
     const capitalize = string=>string.charAt(0).toUpperCase() + string.slice(1)
 
     return capitalize(
-      this.props.cssVar.name.replace( /^--/, '' ).replace( /[-_]/g, ' ' )
+      this.props.cssVar.name.replace( /^--/, '' ).replace(/--/g, ': ').replace( /[-_]/g, ' ' )
     );
   }
 
