@@ -1,8 +1,11 @@
 import { ColorPicker, TextControl, FontSizePicker, RangeControl } from '@wordpress/components';
 import { Fragment } from '@wordpress/element';
 import FontPicker from 'font-picker-react';
+import { readProperty, STORAGE_KEY } from './VarPicker';
 
 const googleApiKey = 'AIzaSyBt0d8TsNo0wJn8Pj2zICtBY614IsEqrHw';
+
+export const COLOR_VALUE_REGEX = /(#[\da-fA-F]{3}|rgba?\()/;
 
 const COLOR_REGEXP = /color$/;
 
@@ -18,16 +21,62 @@ export const renderControl = ( { cssVar, value, onChange } ) => {
     !! usage.property.match( COLOR_REGEXP )
     || [ 'background' ].includes( usage.property )
   ) ) {
-    return <ColorPicker
-      color={ value }
-      onChangeComplete={ color => {
-        const hasTransparency = color.rgb.a !== 1;
+    let currentTheme;
+    try {
+      currentTheme = JSON.parse(window.localStorage.getItem(STORAGE_KEY));
+    } catch (e) {
+      console.log(e);
+    }
 
-        const { r, g, b, a } = color.rgb;
+    const colorUsages = Object.keys(currentTheme).reduce((colorUsages, name) => {
+      const color = currentTheme[name];
 
-        onChange( hasTransparency ? `rgba(${r} , ${g}, ${b}, ${a})` : color.hex );
-      } }
+      if (COLOR_VALUE_REGEX.test(color)) {
+        const alreadyUsed = colorUsages.find(colorUsage=>colorUsage.color === color)
+
+        if (!alreadyUsed) {
+          colorUsages.push({ color, usages: [name] });
+        } else {
+          alreadyUsed.usages.push(name);
+        }
+
+      }
+
+      return colorUsages;
+    }, []);
+
+    const previewSize = '30px';
+
+    const byCountUsagesDesc = ({ usages: usages1 }, { usages: usages2 }) => usages2.length - usages1.length;
+
+    return <Fragment>
+      { colorUsages.sort(byCountUsagesDesc).map(({ color, usages }) => (<span
+        onClick={ () => onChange(color) }
+        title={ usages.join('\n') }
+        style={ {
+          width: previewSize,
+          height: previewSize,
+          border: color === value ? '3px solid yellow' :'1px solid black',
+          borderRadius: '6px',
+          backgroundColor: color,
+          float: 'left',
+          marginTop: '2px',
+          fontSize: '8px',
+        } }>
+        <span style={{backgroundColor: 'white'}}>{ usages.length }</span>
+        </span>)
+      ) }
+      <ColorPicker
+        color={ readProperty(cssVar.name) || value }
+        onChangeComplete={ color => {
+          const hasTransparency = color.rgb.a !== 1;
+
+          const { r, g, b, a } = color.rgb;
+
+          onChange(hasTransparency ? `rgba(${ r } , ${ g }, ${ b }, ${ a })` : color.hex);
+        } }
     />
+    </Fragment>
   }
 
   if ( cssVar.usages.some( usage => [ 'font-size', 'border', 'border-bottom', 'line-height' ].includes( usage.property ) ) ) {

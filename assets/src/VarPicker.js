@@ -3,7 +3,7 @@ import { VariableControl } from './VariableControl';
 
 export const STORAGE_KEY = 'p4-theme';
 
-const readProperty = name => {
+export const readProperty = name => {
   const value = document.documentElement.style.getPropertyValue( name )
 
   console.log( 'reading', value );

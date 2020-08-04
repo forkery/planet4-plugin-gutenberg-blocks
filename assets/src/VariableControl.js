@@ -1,5 +1,5 @@
 import { Fragment, Component } from '@wordpress/element';
-import { renderControl } from './renderControl';
+import { COLOR_VALUE_REGEX, renderControl } from './renderControl';
 import { IconButton } from '@wordpress/components';
 
 const uniqueUsages = cssVar => {
@@ -35,7 +35,7 @@ export class VariableControl extends Component {
     const {value} = this.props;
     const size = '24px';
 
-    if ( value.match( /(#[\da-fA-F]{3}|rgba?\()/ ) ) {
+    if (value.match(COLOR_VALUE_REGEX)) {
       return <span
         onClick={ this.toggleOpen }
         title={value}
