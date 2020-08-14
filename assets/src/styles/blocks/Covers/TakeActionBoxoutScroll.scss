@@ -6,10 +6,14 @@
   left: 0;
   padding: 8px;
   width: 100vw;
-  display: flex;
   height: 80px;
   box-shadow: none;
   border-top: 1px solid $grey-10;
+  display: none;
+
+  &.hidden {
+    display: none !important;
+  }
 
   .not-now {
     display: block;
@@ -103,12 +107,16 @@
 
   @include large-and-up {
     padding: 0;
-    display: block;
     height: 365px;
     width: 290px;
-    position: relative;
+    position: fixed;
+    float: none;
+    bottom: 32px;
+    right: 32px;
+    left: auto;
     border-top: none;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
+    flex-direction: column;
 
     &:hover .cover-card-btn {
       display: block;
