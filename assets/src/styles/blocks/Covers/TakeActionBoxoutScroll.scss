@@ -105,18 +105,16 @@
     }
   }
 
-  @include large-and-up {
+  @include medium-and-up {
     padding: 0;
-    height: 365px;
     width: 290px;
-    position: fixed;
-    float: none;
-    bottom: 32px;
-    right: 32px;
-    left: auto;
+    float: right;
+    position: relative;
     border-top: none;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
     flex-direction: column;
+    margin: 46px 0 16px 32px;
+    display: flex;
 
     &:hover .cover-card-btn {
       display: block;
@@ -162,6 +160,16 @@
       left: auto;
       margin: 32px 0;
     }
+  }
+
+  @include large-and-up {
+    float: none;
+    display: none;
+    position: fixed;
+    margin: 0;
+    right: 32px;
+    left: auto;
+    bottom: 32px;
   }
 
   @include x-large-and-up {

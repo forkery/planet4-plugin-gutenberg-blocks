@@ -72,24 +72,20 @@
     }
   }
 
-  @include large-and-up {
-    max-width: 65%;
+  @include medium-and-up {
     min-height: 210px;
-    margin-top: 50px;
+    margin-top: 80px;
     float: none;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
-
-    &:hover .cover-card-btn {
-      display: block;
-    }
+    margin-left: 0;
 
     .cover-card-heading {
-      margin-bottom: 5px;
+      margin-bottom: 32px;
       font-size: $font-size-md;
     }
 
     .cover-card-content {
-      padding: 16px 32px;
+      padding: 32px;
       width: 55%;
       position: unset;
     }
@@ -100,10 +96,9 @@
     }
 
     .cover-card-btn {
-      display: none;
       right: 32px;
       font-size: $font-size-xxs;
-      margin: 16px 0;
+      margin: 32px 0;
 
       &:after {
         height: 8px;
@@ -114,6 +109,7 @@
     p {
       display: block;
       color: #020202;
+      margin-top: 0;
       line-height: $font-size-md;
       font-size: $font-size-xxs;
     }
@@ -121,8 +117,20 @@
     .cover-card-more {
       font-size: $font-size-lg;
       position: absolute;
-      margin-top: -50px;
+      margin-top: -80px;
       left: 0;
+    }
+  }
+
+  @include large-and-up {
+    max-width: 65%;
+
+    &:hover .cover-card-btn {
+      display: block;
+    }
+
+    .cover-card-btn {
+      display: none;
     }
   }
 }
