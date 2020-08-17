@@ -41,9 +41,11 @@
   }
 
   img {
+    float: left;
     display: block;
     height: 64px;
     width: 64px;
+    margin-right: 16px;
   }
 
   .cover-card-content {
@@ -112,13 +114,8 @@
     position: relative;
     border-top: none;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
-    flex-direction: column;
     margin: 46px 0 16px 32px;
-    display: flex;
-
-    &:hover .cover-card-btn {
-      display: block;
-    }
+    display: block;
 
     .not-now {
       display: none;
@@ -136,6 +133,8 @@
     img {
       height: 165px;
       width: 100%;
+      float: none;
+      margin-right: 0;
     }
 
     p {
@@ -154,11 +153,15 @@
     }
 
     .cover-card-btn {
-      display: none;
       font-size: $font-size-xxs;
-      right: 20px;
+      right: 32px;
       left: auto;
       margin: 32px 0;
+
+      &:after {
+        height: 8px;
+        width: 8px;
+      }
     }
   }
 
@@ -170,6 +173,14 @@
     right: 32px;
     left: auto;
     bottom: 32px;
+
+    &:hover .cover-card-btn {
+      display: block;
+    }
+
+    .cover-card-btn {
+      display: none;
+    }
   }
 
   @include x-large-and-up {

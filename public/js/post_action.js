@@ -35,15 +35,15 @@ jQuery(function ($) {
     const shouldScroll = $(window).width() < 768 || $(window).width() > 992;
     if (shouldScroll) {
       if ($(window).scrollTop() > postStart && $(window).scrollTop() < (postHeight - postStart)) {
-        $boxoutScroll.css('display', 'flex');
+        $boxoutScroll.fadeIn();
         // If mobile/tablet the user can close the boxout by clicking on "not now"
         if ($(window).width() < 992) {
           $('.not-now').on('click', () => {
-            $boxoutScroll.addClass('hidden');
+            $boxoutScroll.fadeOut(() => $boxoutScroll.addClass('hidden'));
           });
         }
       } else if ($(window).width() > 992 || $(window).scrollTop() > (postHeight - postStart)) {
-        $boxoutScroll.css('display', 'none');
+        $boxoutScroll.fadeOut();
       }
     }
   }
