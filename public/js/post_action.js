@@ -3,7 +3,7 @@
 jQuery(function ($) {
   'use strict';
 
-  const $sidebar = $('.post-content').find('> #action-card').not('.bottom').not('.scroll');
+  const $sidebar = $('.post-content').find('> #action-card');
   const offset = $sidebar.offset();
   const topPadding = 100;
 
@@ -26,7 +26,7 @@ jQuery(function ($) {
     }
   }
 
-  const $boxoutScroll = $('.post-content').find('> #action-card.scroll').not('.hidden');
+  const $boxoutScroll = $('.post-content').find('> #action-card-scroll').not('.hidden');
 
   function scroll_action_card_scroll() {
     const postStart = $('.post-content').position().top;
@@ -57,7 +57,7 @@ jQuery(function ($) {
   }
 
   // If "bottom" style, put take action boxout at the end of the post
-  const $bottom = $('.post-content').find('> #action-card.bottom');
+  const $bottom = $('.post-content').find('> #action-card-bottom');
   if ($bottom.length) {
     $bottom.appendTo('div.post-content');
     $bottom.css('display', 'flex');
