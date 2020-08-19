@@ -6,6 +6,7 @@
   height: 80px;
   box-shadow: none;
   position: relative;
+  margin-top: 0 !important;
 
   img {
     display: block;
@@ -75,7 +76,7 @@
 
   @include medium-and-up {
     min-height: 210px;
-    margin-top: 80px;
+    margin-top: 80px !important;
     float: none;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
     margin-left: 0;

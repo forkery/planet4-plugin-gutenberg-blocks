@@ -26,14 +26,11 @@ jQuery(function ($) {
     }
   }
 
-  const $boxoutScroll = $('.post-content').find('> #action-card-scroll').not('.hidden');
-
   function scroll_action_card_scroll() {
+    const $boxoutScroll = $('.post-content').find('> #action-card-scroll').not('.hidden');
     const postStart = $('.post-content').position().top;
     const postHeight = $('.post-content').outerHeight();
-    // There should be no scrolling on tablet
-    const shouldScroll = $(window).width() < 768 || $(window).width() > 992;
-    if (shouldScroll) {
+    if ($boxoutScroll.length > 0) {
       if ($(window).scrollTop() > postStart && $(window).scrollTop() < (postHeight - postStart)) {
         $boxoutScroll.fadeIn();
         // If mobile/tablet the user can close the boxout by clicking on "not now"
@@ -51,15 +48,11 @@ jQuery(function ($) {
   if ($sidebar.length > 0) {
     window.addEventListener('scroll', scroll_action_card_normal);
     window.addEventListener('resize', scroll_action_card_normal);
-  } else if ($boxoutScroll.length > 0) {
-    window.addEventListener('scroll', scroll_action_card_scroll);
-    window.addEventListener('resize', scroll_action_card_scroll);
   }
 
-  // If "bottom" style, put take action boxout at the end of the post
-  const $bottom = $('.post-content').find('> #action-card-bottom');
-  if ($bottom.length) {
-    $bottom.appendTo('div.post-content');
-    $bottom.css('display', 'flex');
-  }
+  // This is called in Google Optimise for the A/B test
+  window.animateBoxoutScroll = () => {
+    window.addEventListener('scroll', scroll_action_card_scroll);
+    window.addEventListener('resize', scroll_action_card_scroll);
+  };
 });
