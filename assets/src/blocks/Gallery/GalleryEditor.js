@@ -111,7 +111,6 @@ const renderView = (attributes, setAttributes) => {
     multiple_image,
     gallery_block_focus_points
   } = attributes;
-
   const layout = getGalleryLayout(className, gallery_block_style);
 
   const toAttribute = attributeName => value => setAttributes({ [attributeName]: value });
