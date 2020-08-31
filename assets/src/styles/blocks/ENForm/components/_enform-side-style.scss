@@ -177,8 +177,9 @@
       input[type=email],
       input[type=tel] {
         border: 1px solid #1a1a1a;
+        border-radius: 0;
         margin-bottom: 20px;
-        padding: $n10;
+        /*padding: $n10;*/
 
         &.is-invalid {
           border: 1px solid #ff3333;

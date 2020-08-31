@@ -32,6 +32,7 @@ new ColumnsBlock();
 new CookiesBlock();
 new CounterBlock();
 new CoversBlock();
+new ENFormBlock()
 new GalleryBlock();
 new HappypointBlock();
 new MediaBlock();
@@ -43,7 +44,6 @@ new SubmenuBlock();
 new SubPagesBlock();
 new TakeactionboxoutBlock();
 new TimelineBlock();
-new ENFormBlock()
 
 addBlockFilters();
 addSubAndSuperscript( window.wp );

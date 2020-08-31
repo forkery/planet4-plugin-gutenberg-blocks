@@ -1,0 +1,31 @@
+.enform {
+    background: none;
+
+    .btn-block {
+        width: 80%;
+    }
+}
+
+.enform-side-style,
+.enform-full-width-bg {
+  width: 100%;
+
+  .container {
+    z-index: 1;
+  }
+}
+
+.enform .form-container {
+  input {
+    box-sizing: border-box;
+  }
+}
+
+/* Default enform text color is white, editor background color too */
+.enform-full-width {
+  background: grey;
+}
+/* Let select inputs follow the flow */
+.wp-core-ui .enform select {
+  max-width: 90%;
+}

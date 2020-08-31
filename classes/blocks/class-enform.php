@@ -41,6 +41,18 @@ class ENForm extends Base_Block {
 			return;
 		}
 
+		// Registering meta field to make it appear in REST API.
+		\register_post_meta(
+			'p4en_form',
+			'p4enform_fields',
+			[	
+				'type'         => 'object',
+				'properties'   => ['id' => ['type' => 'integer']],
+				'show_in_rest' => true,
+				'single'       => true,
+			]
+		);
+
 		add_shortcode( 'shortcake_enblock', [ $this, 'add_block_shortcode' ] );
 		register_block_type(
 			'planet4-blocks/enform',
