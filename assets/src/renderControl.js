@@ -28,7 +28,7 @@ export const renderControl = ( { cssVar, value, onChange } ) => {
       console.log(e);
     }
 
-    const colorUsages = Object.keys(currentTheme).reduce((colorUsages, name) => {
+    const colorUsages = !currentTheme ? [] : Object.keys(currentTheme).reduce((colorUsages, name) => {
       const color = currentTheme[name];
 
       if (COLOR_VALUE_REGEX.test(color)) {
