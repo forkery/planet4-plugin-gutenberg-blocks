@@ -38,6 +38,17 @@ class Gallery extends Base_Block {
 	 * Gallery constructor.
 	 */
 	public function __construct() {
+		// Registering meta field to make it appear in REST API.
+		\register_meta(
+			'post',
+			'_credit_text',
+			[
+				'show_in_rest' => true,
+				'type'         => 'string',
+				'single'       => true,
+			]
+		);
+
 		register_block_type(
 			'planet4-blocks/gallery',
 			[

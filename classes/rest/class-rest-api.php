@@ -187,23 +187,6 @@ class Rest_Api {
 				],
 			]
 		);
-
-		/**
-		 * Endpoint to retrieve the images for the Gallery block
-		 */
-		register_rest_route(
-			self::REST_NAMESPACE,
-			'/get-gallery-images',
-			[
-				[
-					'methods'  => WP_REST_Server::READABLE,
-					'callback' => static function ( $fields ) {
-						$images = Gallery::get_images( $fields );
-						return rest_ensure_response( $images );
-					},
-				],
-			]
-		);
 	}
 
 	/**

@@ -120,7 +120,7 @@ const renderView = (attributes, setAttributes) => {
   }), []);
 
   const { images } = useGalleryImages({ multiple_image, gallery_block_focus_points }, layout);
-
+  console.log(images);
   return (
     <section className={`block ${GALLERY_BLOCK_CLASSES[layout]}`}>
       <header className="articles-title-container">
