@@ -8,6 +8,7 @@ const cssVariables = require( 'postcss-css-variables-extract' );
 const fs = require( 'fs' );
 const collectVarUsages = require( 'postcss-css-variables-extract/lib/scss-var-usages' );
 const mergeVarUsages = require( 'postcss-css-variables-extract/lib/merge-var-usages' );
+const dashDash = require('@inwerpsel/dash-dash');
 
 const allCssVars = {};
 
@@ -51,6 +52,7 @@ module.exports = {
             options: {
               ident: 'postcss',
               plugins: () => [
+                dashDash(),
                 cssVariables( { preserve: true, exportVarUsagesTo: allCssVars } ),
                 require('autoprefixer'),
               ],
