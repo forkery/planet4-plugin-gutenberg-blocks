@@ -1,34 +1,81 @@
-import { Component } from '@wordpress/element';
-import _uniqueId from 'lodash/uniqueId';
+import { useState, useEffect, useRef } from '@wordpress/element';
 
 const { __ } = wp.i18n;
 
-export class GalleryCarousel extends Component {
-  constructor(props) {
-    super(props);
-    this.id = `gallery_${_uniqueId()}`;
+export const GalleryCarousel = ({ images }) => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [nextSlide, setNextSlide] = useState(null);
+  const [order, setOrder] = useState('next');
+  const [transitioning, setTransitioning] = useState(false);
+
+  const lastSlide = images.length - 1;
+
+  const goToSlide = newSlide => {
+    if (newSlide !== currentSlide) {
+      const newOrder = newSlide > currentSlide ? 'next' : 'prev';
+      if (order !== newOrder) {
+        setOrder(newOrder);
+      }
+      setTransitioning(true);
+      setNextSlide(newSlide);
+      setTimeout(() => {
+        setCurrentSlide(newSlide);
+        setNextSlide(newSlide === lastSlide ? 0 : newSlide + 1);
+        if (order !== 'next') {
+          setOrder('next');
+        }
+        setTransitioning(false);
+      }, 1000);
+    }
   }
 
-  render() {
-    const { images } = this.props;
-    return (
-      <div id={this.id} className="carousel slide" data-ride="carousel">
+  const goToNextSlide = () => goToSlide(currentSlide === lastSlide ? 0 : currentSlide + 1);
+  const goToPrevSlide = () => goToSlide(currentSlide === 0 ? lastSlide : currentSlide - 1);
+
+  const timerRef = useRef(null);
+
+  useEffect(() => {
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+    }
+    timerRef.current = setTimeout(goToNextSlide, 10000);
+    return () => clearTimeout(timerRef.current);
+  }, [currentSlide]);
+
+  return (
+    <div className="carousel slide">
+      {images.length > 1 &&
+        <ol className="carousel-indicators">
+          {images.map((image, index) =>
+            <li
+              key={`indicator-${index}`}
+              onClick={() => goToSlide(index)}
+              className={index === currentSlide ? 'active' : ''}
+            />
+          )}
+        </ol>
+      }
+      <div className="carousel-inner" role="listbox">
         {images.length > 1 &&
-          <ol className="carousel-indicators">
-            {images.map((image, index) =>
-              <li key={`#${this.id}-${index}`} data-target={`#${this.id}`} data-slide-to={index} className={index === 0 ? 'active' : ''} />
-            )}
-          </ol>
+          <a className="carousel-control-prev" role="button" onClick={goToPrevSlide}>
+            <span className="carousel-control-prev-icon" aria-hidden="true"><i></i></span>
+            <span className="sr-only">{__('Previous', 'planet4-blocks')}</span>
+          </a>
         }
-        <div className="carousel-inner" role="listbox">
-          {images.length > 1 &&
-            <a className="carousel-control-prev" href={`#${this.id}`} role="button" data-slide="prev">
-              <span className="carousel-control-prev-icon" aria-hidden="true"><i></i></span>
-              <span className="sr-only">{__('Previous', 'planet4-blocks')}</span>
-            </a>
+        {images.map((image, index) => {
+          let className = `carousel-item ${index === currentSlide ? 'active' : ''}`;
+          if (transitioning) {
+            if (index === nextSlide) {
+              className += ` carousel-item-${order} carousel-item-${order === 'next' ? 'right' : 'left'}`;
+            }  else if (index === currentSlide) {
+              className += ` carousel-item-${order === 'next' ? 'left' : 'right'}`;
+            }
           }
-          {images.map((image, index) => (
-            <div key={image.image_src} className={`carousel-item ${index === 0 ? 'active' : ''}`}>
+          return (
+            <div
+              key={image.image_src}
+              className={className}
+            >
               <img
                 src={image.image_src}
                 srcSet={image.image_srcset}
@@ -45,15 +92,15 @@ export class GalleryCarousel extends Component {
                 </div>
               )}
             </div>
-          ))}
-          {images.length > 1 && (
-            <a className="carousel-control-next" href={`#${this.id}`} role="button" data-slide="next">
-              <span className="carousel-control-next-icon" aria-hidden="true"><i></i></span>
-              <span className="sr-only">{__('Next', 'planet4-blocks')}</span>
-            </a>
-          )}
-        </div>
+          );
+        })}
+        {images.length > 1 && (
+          <a className="carousel-control-next" role="button" onClick={goToNextSlide}>
+            <span className="carousel-control-next-icon" aria-hidden="true"><i></i></span>
+            <span className="sr-only">{__('Next', 'planet4-blocks')}</span>
+          </a>
+        )}
       </div>
-    );
-  }
+    </div>
+  );
 }
