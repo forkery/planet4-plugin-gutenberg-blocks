@@ -76,6 +76,10 @@ export const renderControl = ( { cssVar, value, onChange } ) => {
           onChange(hasTransparency ? `rgba(${ r } , ${ g }, ${ b }, ${ a })` : color.hex);
         } }
     />
+      <TextControl
+        value={ value }
+        onChange={ onChange }
+      />
     </Fragment>
   }
 
@@ -102,15 +106,25 @@ export const renderControl = ( { cssVar, value, onChange } ) => {
             style={{minWidth: '100px'}}
           />
         </div>
+      <TextControl
+        value={ value }
+        onChange={ onChange }
+      />
       </div>
   }
 
   if ( cssVar.usages.some( usage => usage.property === 'font-family' ) ) {
-    return <FontPicker
-      apiKey={ googleApiKey }
-      activeFontFamily={ value }
-      onChange={ value => onChange( value.family ) }
-    />
+    return <Fragment>
+      <FontPicker
+        apiKey={ googleApiKey }
+        activeFontFamily={ value }
+        onChange={ value => onChange( value.family ) }
+      />
+      <TextControl
+        value={ value }
+        onChange={ onChange }
+      />
+    </Fragment>
   }
 
   // if ( cssVar.usages.some( usage => usage.property === 'font-weight' ) ) {

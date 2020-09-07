@@ -35,7 +35,7 @@ export class VariableControl extends Component {
     const {value} = this.props;
     const size = '24px';
 
-    if (value.match(COLOR_VALUE_REGEX)) {
+    if (value && value.match(COLOR_VALUE_REGEX)) {
       return <span
         onClick={ this.toggleOpen }
         title={value}
@@ -129,7 +129,7 @@ export class VariableControl extends Component {
       />
       { this.previewValue() }
       <h5
-        style={ { fontSize: '16px', padding: '2px 4px 0', userSelect: 'text'  } }
+        style={ { fontSize: '16px', padding: '2px 4px 0', userSelect: 'text', fontWeight: '400' } }
         onClick={ this.toggleOpen }
       >
         {this.formatTitle()}
