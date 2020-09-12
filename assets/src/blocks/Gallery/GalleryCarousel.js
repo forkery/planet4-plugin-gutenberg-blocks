@@ -25,7 +25,7 @@ export const GalleryCarousel = ({ images }) => {
           setOrder('next');
         }
         setTransitioning(false);
-      }, 1000);
+      }, 500);
     }
   }
 
@@ -63,14 +63,17 @@ export const GalleryCarousel = ({ images }) => {
           </a>
         }
         {images.map((image, index) => {
-          let className = `carousel-item ${index === currentSlide ? 'active' : ''}`;
-          if (transitioning) {
+	  let className = `carousel-item`;
+	  if (transitioning) {
             if (index === nextSlide) {
-              className += ` carousel-item-${order} carousel-item-${order === 'next' ? 'right' : 'left'}`;
-            }  else if (index === currentSlide) {
-              className += ` carousel-item-${order === 'next' ? 'left' : 'right'}`;
+	      className += ` carousel-item-${order} carousel-item-${order === 'next' ? 'left' : 'right'}`;
+	      //className += ` active`
+	    }  else if (index === currentSlide) {
+              className += ` active carousel-item-${order === 'next' ? 'left' : 'right'}`;
             }
-          }
+          } else {
+	    className += ` ${index === currentSlide ? 'active' : ''}`
+	  }
           return (
             <div
               key={image.image_src}
