@@ -1,5 +1,11 @@
-export const GalleryGrid = ({ images }) => (
-  <div className="container">
+import { useEffect } from '@wordpress/element';
+
+export const GalleryGrid = ({ images }) => {
+  useEffect(() => {
+    window.setupLightBox();
+  });
+
+  return <div className="container">
     <div className="grid-row">
       {images.map(image => (
         <div key={image.image_src} className="grid-item">
@@ -12,4 +18,4 @@ export const GalleryGrid = ({ images }) => (
       ))}
     </div>
   </div>
-);
+};
